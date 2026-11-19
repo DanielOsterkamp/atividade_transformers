@@ -1,17 +1,27 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+        GerenciadorAutobots gerenciador = new GerenciadorAutobots();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
+        Autobot optimus = new Autobot("Optimus Prime", 850.0,10);
+        Autobot bumblebee = new Autobot("Bumblebee", 320.0,5);
+        Autobot ratchet = new Autobot("Ratchet", 180.0, 7);
+
+        gerenciador.adicionar(optimus);
+        gerenciador.adicionar(bumblebee);
+        gerenciador.adicionar(ratchet);
+        System.out.println("Energon total: " + gerenciador.calcularEnergonTotal());
+
+        Autobot encontrado = gerenciador.buscar("Bumblebee");
+
+        if (encontrado != null) {
+            System.out.println("Encontrado: " + encontrado.getNome());
+        } else {
+            System.out.println("Autobot nao encontrado");
         }
+        gerenciador.reparar(ratchet);
+        System.out.println("Energon do Ratchet: " + ratchet.getEnergon());
+        System.out.println("Classificacao: " + gerenciador.classificar(ratchet));
     }
 }
